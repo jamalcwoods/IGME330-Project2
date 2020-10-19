@@ -17,7 +17,7 @@ sourceNode.connect(filter)
 filter.connect(filteredAnalyserNode)
 
 sourceNode.connect(analyserNode)
-filter.connect(audioCtx.destination);
+analyserNode.connect(audioCtx.destination);
 
 let data = new Uint8Array(analyserNode.frequencyBinCount);
 let filteredData = new Uint8Array(filteredAnalyserNode.frequencyBinCount);
