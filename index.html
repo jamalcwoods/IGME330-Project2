@@ -10,6 +10,12 @@
 	</style>
 </head>
 <body>
+    <p>
+            <span><label for="highshelfCB">Highshelf Filter (Treble)</label><input type="checkbox" id="highshelfCB"></span>
+            <span><label for="lowshelfCB">Lowshelf Filter (Bass)</label><input type="checkbox" id="lowshelfCB"></span>
+            <span><label for="distortionCB">Distortion</label><input type="checkbox" id="distortionCB"></span>
+            <span>0 <input type="range" min="0" max="100" value="0" id="distortionSlider"> 100</span>
+    </p>
 <canvas width="640" height="480"></canvas>
 <audio controls src="./media/test.mp3"></audio>
 <script  src="./src/main.js"></script>
