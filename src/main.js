@@ -7,8 +7,8 @@ let analyserNode = audioCtx.createAnalyser();
 
 let filteredAnalyserNode = audioCtx.createAnalyser();
 
-var filter = audioCtx.createBiquadFilter()
-filter.frequency.setValueAtTime(100, audioCtx.currentTime);
+var filter = audioCtx.createBiquadFilter();
+filter.frequency.setValueAtTime(500, audioCtx.currentTime);
 filter.type = "lowpass";
 
 
@@ -54,18 +54,16 @@ function update(){
         filteredval += b
     }
     filteredval /= filteredData.length
-
-    
-    if(filteredval > 5){
+    if(filteredval > 4.5){
         if(!beat){
-            beat = true
-            console.log(filteredData)
+        beat = true
+        console.log(filteredval)
         }
     } else if(beat){
         beat = false
     }
 
-    counter += val/(255 * 4)
+    counter += val/(255 * 5)
 
     clear(ctx)
     ctx.save()
