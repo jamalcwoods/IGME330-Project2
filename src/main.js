@@ -19,17 +19,33 @@ document.querySelector("audio").onplay = (e) => {
 //Controls
 
 let beatSectionCount = 5;
+
 let beatSections = []
-let color1 = "#000000",color2 = "#ffffff"
+let color1 = "#000000",color2 = "#ffffff",color3 = "#ffffff",color4 = "#000000"
 let ctx = document.querySelector("canvas").getContext("2d");
+let frequencyLineLength = ctx.canvas.width/4
 
 update();
 
-
+document.querySelector("#fileinput").addEventListener("change", function(){
+    let sound = document.querySelector("#audio")
+    let reader = new FileReader(); 
+    reader.onload = function(e){
+        sound.src = this.result;
+    }
+    reader.readAsDataURL(this.files[0])
+});
 
 document.querySelector("#frequencySectionAmount").addEventListener("input",function(e){
     beatSectionCount = parseInt(e.target.value)
     document.querySelector("#frequencySphereInd").innerHTML = "Number of Frequency Spheres: " + e.target.value
+})
+
+ document.querySelector("#frequencyLineInd").innerHTML = "Max Length of Frequency Lines: " + frequencyLineLength
+
+document.querySelector("#frequencyLineLength").addEventListener("input",function(e){
+    frequencyLineLength = e.target.value
+    document.querySelector("#frequencyLineInd").innerHTML = "Max Length of Frequency Lines: " + e.target.value
 })
 
 document.querySelector("#color1").addEventListener("input",function(e){
@@ -38,6 +54,14 @@ document.querySelector("#color1").addEventListener("input",function(e){
 
 document.querySelector("#color2").addEventListener("input",function(e){
     color2 = e.target.value
+})
+
+document.querySelector("#color3").addEventListener("input",function(e){
+    color3 = e.target.value
+})
+
+document.querySelector("#color4").addEventListener("input",function(e){
+    color4 = e.target.value
 })
 
 
@@ -72,10 +96,11 @@ function update(){
     ctx.fillStyle = gradient2
     ctx.fillRect(0,ctx.canvas.height/2,ctx.canvas.width,ctx.canvas.height)
 
+    ctx.strokeStyle = color4
     for(var i = 0;i <  data.length; i++){
         var y = ctx.canvas.height - ((ctx.canvas.height/data.length) * (i+1))
-        var x1 = (ctx.canvas.width/2) - ((ctx.canvas.width/4) *  data[i]/255)
-        var x2 = (ctx.canvas.width/2) + ((ctx.canvas.width/4) *  data[i]/255)
+        var x1 = (ctx.canvas.width/2) - ((frequencyLineLength) *  data[i]/255)
+        var x2 = (ctx.canvas.width/2) + ((frequencyLineLength) *  data[i]/255)
         ctx.beginPath();
         ctx.moveTo(x1,y)
         ctx.lineTo(x2,y)
@@ -91,7 +116,7 @@ function update(){
     
     
     
-    ctx.fillStyle = color2
+    ctx.fillStyle = color3
     ctx.fill();
     ctx.restore();
 }

@@ -12,15 +12,24 @@
 <body>
 <div class="slidecontainer">
 		<h1>Controls</h1>
-		<h2>Color 1</h2>
+		<h2>Gradient Color 1</h2>
 		<input type="color" value="#000000" id="color1">
-		<h2>Color 2</h2>
+		<h2>Gradient Color 2</h2>
 		<input type="color" value="#ffffff" id="color2">
-		<h2 id="frequencySphereInd">Number of Frequency Spheres: 10</h2>
-		<input type="range" min="1" max="20" value="10" class="slider" id="frequencySectionAmount">
+        <h2>Frequency Spheres Color</h2>
+		<input type="color" value="#ffffff" id="color3">
+        <h2>Frequency Lines Color</h2>
+		<input type="color" value="#000000" id="color4">
+		<h2 id="frequencySphereInd">Number of Frequency Spheres: 5</h2>
+		<input type="range" min=0 max=20 value=5 class="slider" id="frequencySectionAmount">
+    
+        <h2 id="frequencyLineInd"></h2>
+		<input type="range" min=0 max=400 value=160 class="slider" id="frequencyLineLength">
 </div>
 <canvas width="640" height="480"></canvas>
-<audio controls src="./media/test.mp3"></audio>
+<audio controls src="./media/test.mp3" id="audio"></audio>
+<label for="myfile">Select a file:</label>
+<input type="file" id="fileinput">
 <script  src="./src/main.js"></script>
 </body>
 </html>
